@@ -38,6 +38,13 @@ douyin sign service
     ```bash
     # 列出进程列表
     $ frida-ps -U
+
+    # 只列出应用
+    $ frida-ps -Ua
+
+    # 列出所有安装的应用
+    $ frida-ps -Uai
+
     # 进入应用
     $ frida -U -f com.ss.android.ugc.aweme
     ```
@@ -45,4 +52,5 @@ douyin sign service
 ## 参考链接
 
 - [frida](https://github.com/frida/frida)
+- [frida-all-in-one](https://github.com/hookmaster/frida-all-in-one)
 - [常用adb命令汇总](http://mumu.163.com/help/func/20190129/30131_797867.html)
