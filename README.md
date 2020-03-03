@@ -2,7 +2,19 @@
 
 douyin sign service
 
-## 安装
+## Android Emulator
+
+- [Genymotion](https://www.genymotion.com/)
+- [网易MuMu模拟器](https://mumu.163.com/)
+- [雷电模拟器](https://www.ldmnq.com/)
+
+    `Genymotion` 基于 `VirtualBox` 可以实现跨平台使用, 加上 `Genymotion_ARM_Translation` 的加持完美支持 `ARM`, 个人版本可免费使用。
+    
+    - https://www.genymotion.com/download/
+    - https://docs.genymotion.com/desktop/3.0/
+    - https://github.com/m9rco/Genymotion_ARM_Translation
+
+## Frida
 
 1. 本地安装`frida`
 
