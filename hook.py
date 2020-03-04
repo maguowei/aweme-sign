@@ -20,10 +20,10 @@ def start_hook():
 
         with open('script/douyin-sign.js') as file:
             js_code = file.read()
-        script = session.create_script(js_code)
-        script.on('message', on_message)
-        script.load()
-        return script
+        api = session.create_script(js_code)
+        api.on('message', on_message)
+        api.load()
+        return api
     except frida.NotSupportedError:
         print(f'app not found!')
 
