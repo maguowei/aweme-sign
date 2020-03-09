@@ -9,7 +9,14 @@ app = Flask(__name__)
 api = start_hook()
 
 
-@app.route("/")
+@app.route('/sign')
+def sign():
+    url = request.args.get('url', '')
+    headers = dict(request.headers)
+    return api.exports.sign(url, headers)
+
+
+@app.route('/')
 def index():
     current_timestamp = str(int(time.time() * 1000))
     url = "https://aweme.snssdk.com/aweme/v1/user/?user_id=57833035660&retry_type=no_retry&ac=wifi&channel=wandoujia_aweme1&aid=1128&app_name=aweme&version_code=580&version_name=5.8.0&device_platform=android&ssmix=a&device_type=OPPO+R11+Plus&device_brand=OPPO&language=zh&os_api=22&os_version=5.1.1&resolution=720*1280&dpi=192&update_version_code=5800&mcc_mnc=46002&ts=1578724824&_rticket=" +  current_timestamp +"&device_id=70433914677&iid=99003389687&as=a1552681083dee3da94255&cp=63d8e65f8f9313d2e1McUg&mas=01656f90dce2caa5a0d24a9cfcb52bdb78acac4c2c9c8626cca6a6"
