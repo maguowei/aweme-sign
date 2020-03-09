@@ -39,6 +39,9 @@ douyin sign service
     
     # 启动 server
     $ ./frida-server
+   
+    # 或者后台运行
+    $ nohup /data/local/tmp/frida-server &
     ```
 3. 设置端口转发
     ```bash
