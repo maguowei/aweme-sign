@@ -13,7 +13,12 @@ api = start_hook()
 def sign():
     url = request.args.get('url', '')
     headers = dict(request.headers)
-    return api.exports.sign(url, headers)
+    data = api.exports.sign(url, headers)
+    return jsonify({
+        'url': url,
+        'headers': headers,
+        'sign': data,
+    })
 
 
 @app.route('/')
