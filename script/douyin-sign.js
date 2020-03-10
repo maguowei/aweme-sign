@@ -23,7 +23,7 @@ rpc.exports = {
                 }
             }
             var result = tt1.a(url, headersMap);
-            console.log(result);
+            // console.log(result);
             data["X-Gorgon"]=result.get("X-Gorgon").toString();
             data["X-Khronos"]=result.get("X-Khronos").toString();
         });
