@@ -1,4 +1,4 @@
-# douyin-sign
+# Aweme-Sign
 
 douyin sign service
 
