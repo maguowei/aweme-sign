@@ -15,7 +15,7 @@ def sign():
     try:
         data = api.exports.sign(url, headers)
     except frida.InvalidOperationError as e:
-        print(e)
+        print(f'app crash: {e}')
         api = start_hook()
         data = api.exports.sign(url, headers)
     return jsonify({
