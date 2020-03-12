@@ -63,7 +63,10 @@ douyin sign service
     # 进入应用
     $ frida -U -f com.ss.android.ugc.aweme
     ```
-
+5. Run sign server
+    ```bash
+    gunicorn -w 1 -b 0.0.0.0:5000 app:app
+    ```
 ## 参考链接
 
 - [frida](https://github.com/frida/frida)

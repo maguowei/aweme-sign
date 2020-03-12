@@ -10,6 +10,7 @@ frida-tools = "*"
 frida = "*"
 requests = "*"
 flask = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
