@@ -8,19 +8,19 @@
 ## Run
 ```bash
 # for x86
-docker run --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp android4docker/q-google-x86:30.0.0
+docker run -d --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp android4docker/q-google-x86:30.0.0
 ```
 
 ## adb usage
 
 1. 系统文件获取读写权限
     ```bash
-    `/android/sdk/launch-emulator.sh`
+    docker run -d --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp -v $PWD/launch-emulator.sh:/android/sdk/launch-emulator.sh android4docker/o-google-x86:30.0.0
     
     # https://developer.android.com/studio/run/emulator-commandline
     `-writable-system`
     
-    # example
+    # launch-emulator.sh
     exec emulator/emulator @Pixel2 -no-audio -verbose -wipe-data \
       -ports 5556,5557 \
       -writable-system \
