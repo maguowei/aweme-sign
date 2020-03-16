@@ -46,3 +46,37 @@ docker run -d --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp 
        chmod +x busybox
        busybox --install .
     ```
+   
+3. arm libhoudini
+    ```bash
+    # Genymotion /system/bin/flash-archive.sh
+    # Genymotion /system/etc/init.genymotion.sh
+    armabi() {
+        _abilist=x86
+        is_genymotion_cloud_product && _abilist=x86_64,x86
+    
+        # ARM applications
+        if [ -f /system/lib/libhoudini.so ]; then
+            # Allow installation of ARM apps
+            setprop ro.product.cpu.abi2 armeabi-v7a
+            setprop ro.product.cpu.abilist $_abilist,armeabi-v7a,armeabi
+            setprop ro.product.cpu.abilist32 x86,armeabi-v7a,armeabi
+            # Enable native bridge for ARM apps
+            setprop ro.dalvik.vm.isa.arm x86
+            setprop ro.dalvik.vm.native.bridge libhoudini.so
+        else
+            setprop ro.dalvik.vm.native.bridge 0
+            setprop ro.product.cpu.abilist $_abilist
+            setprop ro.product.cpu.abilist32 x86
+        fi
+    
+        # ARM executables
+        if [ -f /system/bin/houdini ]; then
+            # Enable execution of ARM executables
+            setprop ro.enable.native.bridge.exec 1
+            mount -t binfmt_misc binfmt_misc /proc/sys/fs/binfmt_misc
+            cp /system/etc/binfmt_misc/arm_exe /proc/sys/fs/binfmt_misc/register
+            cp /system/etc/binfmt_misc/arm_dyn /proc/sys/fs/binfmt_misc/register
+        fi
+    }
+    ```
