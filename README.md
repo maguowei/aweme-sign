@@ -5,8 +5,6 @@ douyin sign service
 ## Android Emulator
 
 - [Genymotion](https://www.genymotion.com/)
-- [网易MuMu模拟器](https://mumu.163.com/)
-- [雷电模拟器](https://www.ldmnq.com/)
 
     `Genymotion` 基于 `VirtualBox` 可以实现跨平台使用, 加上 `Genymotion_ARM_Translation` 的加持完美支持 `ARM`, 个人版本可免费使用。
     
