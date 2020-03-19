@@ -26,22 +26,13 @@ douyin sign service
     $ xz -d frida-server.xz
     ```
 
-2. `Android` 安装 `frida-server`
-
+2. [`Android` 安装 `frida-server`](https://frida.re/docs/android/)
+    
     ```bash
-    $ adb push frida-server /data/local/tmp/frida-server
-    
-    # 进入
-    $ adb shell
-    $ su
-    $ cd /data/local/tmp
-    $ chmod +x frida-server
-    
-    # 启动 server
-    $ ./frida-server
-   
-    # 或者后台运行
-    $ nohup /data/local/tmp/frida-server &
+    $ adb root
+    $ adb push frida-server /data/local/tmp/
+    $ adb shell "chmod 755 /data/local/tmp/frida-server"
+    $ adb shell "/data/local/tmp/frida-server &"
     ```
 3. 设置端口转发
     ```bash
