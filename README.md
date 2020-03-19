@@ -32,7 +32,7 @@ douyin sign service
     $ adb root
     $ adb push frida-server /data/local/tmp/
     $ adb shell "chmod 755 /data/local/tmp/frida-server"
-    $ adb shell "/data/local/tmp/frida-server &"
+    $ nohup adb shell "/data/local/tmp/frida-server" &
     ```
 3. 设置端口转发
     ```bash
