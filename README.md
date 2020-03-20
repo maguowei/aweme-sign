@@ -60,4 +60,5 @@ douyin sign service
 
 - [frida](https://github.com/frida/frida)
 - [frida-all-in-one](https://github.com/hookmaster/frida-all-in-one)
+- [Android 调试桥 (adb)](https://developer.android.com/studio/command-line/adb)
 - [常用adb命令汇总](http://mumu.163.com/help/func/20190129/30131_797867.html)
