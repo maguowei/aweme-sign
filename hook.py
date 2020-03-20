@@ -1,19 +1,20 @@
 import frida
-import time
 
 
 def on_message(message, data):
     print(f'[{message}] => {data}')
 
 
-def start_hook():
-    device = frida.get_usb_device(timeout=5)
-
+def start_hook(remote_device=''):
+    if remote_device:
+        frida.get_device_manager().add_remote_device(remote_device)
+        device = frida.get_remote_device()
+    else:
+        device = frida.get_usb_device()
     app_package_name = 'com.ss.android.ugc.aweme'
     try:
         pid = device.spawn([app_package_name])
         device.resume(pid)
-        time.sleep(1)
         session = device.attach(pid)
         print('[*] start hook')
         print(session)
