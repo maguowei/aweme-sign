@@ -56,6 +56,21 @@ douyin sign service
     ```bash
     gunicorn -w 1 -b 0.0.0.0:5000 app:app
     ```
+   
+# frp
+
+```bash
+# run frida-server
+$ adb shell "/data/local/tmp/frida-server -l 0.0.0.0"
+
+# frps
+$ docker run -it --rm -p 7000:7000 -p 5555:5555 -p 27042:27042 maguowei/frp
+
+# frpc expose frida-server
+$ docker run -it --rm --network host maguowei/frp /frp/frpc tcp --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
+
+```
+
 ## 参考链接
 
 - [frida](https://github.com/frida/frida)
