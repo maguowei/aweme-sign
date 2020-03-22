@@ -8,14 +8,14 @@
 ## Run
 ```bash
 # for x86
-docker run -d --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp android4docker/q-google-x86:30.0.0
+docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 android4docker/q-google-x86:30.0.0
 ```
 
 ## adb usage
 
 1. 系统文件获取读写权限
     ```bash
-    docker run -d --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp -v $PWD/launch-emulator.sh:/android/sdk/launch-emulator.sh android4docker/o-google-x86:30.0.0
+    docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 -v $PWD/launch-emulator.sh:/android/sdk/launch-emulator.sh android4docker/o-google-x86:30.0.0
     
     # https://developer.android.com/studio/run/emulator-commandline
     `-writable-system`
@@ -30,7 +30,7 @@ docker run -d --device /dev/kvm --publish 8554:8554/tcp --publish 5555:5555/tcp 
       -logcat-output /tmp/android-unknown/logcat.log \
       -feature  AllowSnapshotMigration \
       -gpu swiftshader_indirect \
-       -metrics-collection -shell-serial file:/tmp/android-unknown/kernel.log -logcat-output /tmp/android-unknown/logcat.log ${EMULATOR_PARAMS} -qemu -append panic=1
+      -metrics-collection -shell-serial file:/tmp/android-unknown/kernel.log -logcat-output /tmp/android-unknown/logcat.log ${EMULATOR_PARAMS} -qemu -append panic=1
     
     
     adb root
