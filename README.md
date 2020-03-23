@@ -72,7 +72,8 @@ $ adb connect ${SERVER_IP}:5555
 
 # frida-server
 $ docker run --name frida-server -it --rm --network host maguowei/frp /frp/frpc tcp -n frida-server --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
-
+# test
+$ frida-ps -H ${SERVER_IP}:27042
 ```
 
 ## 参考链接
