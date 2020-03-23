@@ -66,8 +66,12 @@ $ adb shell "/data/local/tmp/frida-server -l 0.0.0.0"
 # frps
 $ docker run --name frps -d --restart always -p 7000:7000 -p 5555:5555 -p 27042:27042 maguowei/frp
 
-# frpc expose frida-server
-$ docker run --name frida-server -it --rm --network host maguowei/frp /frp/frpc tcp --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
+# adb
+$ docker run --name adb -d --network host --restart always maguowei/frp /frp/frpc tcp -n adb --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 5555 --remote_port 5555
+$ adb connect ${SERVER_IP}:5555
+
+# frida-server
+$ docker run --name frida-server -it --rm --network host maguowei/frp /frp/frpc tcp -n frida-server --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
 
 ```
 
