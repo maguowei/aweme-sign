@@ -64,10 +64,10 @@ douyin sign service
 $ adb shell "/data/local/tmp/frida-server -l 0.0.0.0"
 
 # frps
-$ docker run -it --rm -p 7000:7000 -p 5555:5555 -p 27042:27042 maguowei/frp
+$ docker run --name frps -d --restart always -p 7000:7000 -p 5555:5555 -p 27042:27042 maguowei/frp
 
 # frpc expose frida-server
-$ docker run -it --rm --network host maguowei/frp /frp/frpc tcp --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
+$ docker run --name frida-server -it --rm --network host maguowei/frp /frp/frpc tcp --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
 
 ```
 
