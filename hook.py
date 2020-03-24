@@ -1,3 +1,4 @@
+from subprocess import Popen
 import frida
 
 
@@ -11,6 +12,8 @@ def start_hook(remote_device=''):
         device = frida.get_remote_device()
     else:
         device = frida.get_usb_device()
+    Popen("adb forward tcp:27042 tcp:27042", shell=True).wait()
+    Popen("adb forward tcp:27043 tcp:27043", shell=True).wait()
     app_package_name = 'com.ss.android.ugc.aweme'
     try:
         pid = device.spawn([app_package_name])

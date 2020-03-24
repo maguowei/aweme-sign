@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 from hook import start_hook
 
 
-REMOTE_DEVICE = os.getenv('REMOTE_DEVICE', '192.168.56.103:27042')
+REMOTE_DEVICE = os.getenv('REMOTE_DEVICE', '')
 
 
 app = Flask(__name__)
