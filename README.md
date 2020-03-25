@@ -12,68 +12,41 @@ douyin sign service
     - https://docs.genymotion.com/desktop/3.0/
     - https://github.com/m9rco/Genymotion_ARM_Translation
 
-## Frida
+## Frida 
 
-1. 本地安装`frida`
+- [`Emulator` 安装 `frida-server`](https://frida.re/docs/android/)
 
     ```bash
-    $ pip install frida
-    $ pip install frida-tools
-    
     $ wget -O frida-server.xz https://github.com/frida/frida/releases/download/12.8.13/frida-server-12.8.13-android-x86.xz
     $ xz -d frida-server.xz
-    ```
 
-2. [`Android` 安装 `frida-server`](https://frida.re/docs/android/)
-    
-    ```bash
     $ adb root
     $ adb push frida-server /data/local/tmp/
     $ adb shell "chmod 755 /data/local/tmp/frida-server"
-    $ nohup adb shell "/data/local/tmp/frida-server" &
-    ```
-3. 设置端口转发
-    ```bash
-    $ adb forward tcp:27042 tcp:27042
-    $ adb forward tcp:27043 tcp:27043
+    $ adb shell "/data/local/tmp/frida-server -l 0.0.0.0"
     ```
 
-4. 测试
-    ```bash
-    # 列出进程列表
-    $ frida-ps -U
-
-    # 只列出应用
-    $ frida-ps -Ua
-
-    # 列出所有安装的应用
-    $ frida-ps -Uai
-
-    # 进入应用
-    $ frida -U -f com.ss.android.ugc.aweme
-    ```
-5. Run sign server
-    ```bash
-    gunicorn -w 1 -b 0.0.0.0:5000 app:app
-    ```
-   
-# frp
+## frp
 
 ```bash
-# run frida-server
-$ adb shell "/data/local/tmp/frida-server -l 0.0.0.0"
-
 # frps
 $ docker run --name frps -d --restart always -p 7000:7000 -p 5555:5555 -p 27042:27042 maguowei/frp
 
+# 将模拟器注册为远程设备
+$ export SERVER_IP=xxx.xxx.xxx.xxx   # frps server ip
+$ export LOCAL_IP=192.168.56.103    # device ip
 # adb
-$ docker run --name adb -d --network host --restart always maguowei/frp /frp/frpc tcp -n adb --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 5555 --remote_port 5555
-$ adb connect ${SERVER_IP}:5555
+$ docker run --name adb -d --network host --restart always maguowei/frp /frp/frpc tcp -n adb --server_addr ${SERVER_IP}:7000 --local_ip ${LOCAL_IP} --local_port 5555 --remote_port 5555
 
-# frida-server
-$ docker run --name frida-server -it --rm --network host maguowei/frp /frp/frpc tcp -n frida-server --server_addr ${SERVER_IP}:7000 --local_ip 192.168.56.103 --local_port 27042 --remote_port 27042
-# test
-$ frida-ps -H ${SERVER_IP}:27042
+# test 使用下面的命令连接上面注册的设备
+$ adb connect ${SERVER_IP}:5555
+```
+
+## Run
+
+```bash
+$ cp .env.tpl .env
+$ make run
 ```
 
 ## 参考链接

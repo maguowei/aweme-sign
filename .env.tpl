@@ -1,0 +1,2 @@
+APP_NAME=aweme-sign
+REMOTE_DEVICE=''
