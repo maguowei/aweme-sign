@@ -47,10 +47,14 @@ docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 android4docker/q-googl
        busybox --install .
     ```
    
-3. arm libhoudini
+3. ARM libhoudini
+
+    器支持 ARM 尝试，没有成功
+    
+    - Genymotion /system/bin/flash-archive.sh
+    - Genymotion /system/etc/init.genymotion.sh
+    
     ```bash
-    # Genymotion /system/bin/flash-archive.sh
-    # Genymotion /system/etc/init.genymotion.sh
     armabi() {
         _abilist=x86
         is_genymotion_cloud_product && _abilist=x86_64,x86
@@ -80,3 +84,9 @@ docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 android4docker/q-googl
         fi
     }
     ```
+
+## Other Tools
+
+- [jadx](https://github.com/skylot/jadx)
+- [Apktool](https://github.com/iBotPeaches/Apktool)
+- [objection](https://github.com/sensepost/objection)
