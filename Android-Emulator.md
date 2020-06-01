@@ -3,13 +3,12 @@
 - [google/android-emulator-container-scripts](https://github.com/google/android-emulator-container-scripts)
 - docker image
   - [android4docker/q-google-x86](https://hub.docker.com/r/android4docker/q-google-x86)
-  - [android4docker/n-google-a32](https://hub.docker.com/r/android4docker/n-google-a32)
 
 ## Run
 
 ```bash
 # for x86
-docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 android4docker/q-google-x86:30.0.0
+docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 android4docker/q-google-x86:30.0.12
 ```
 
 ## adb usage
@@ -17,7 +16,7 @@ docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 android4docker/q-googl
 1. 系统文件获取读写权限
 
 ```bash
-docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 -v $PWD/launch-emulator.sh:/android/sdk/launch-emulator.sh android4docker/o-google-x86:30.0.0
+docker run -d --device /dev/kvm -p 8554:8554 -p 5555:5555 -v $PWD/launch-emulator.sh:/android/sdk/launch-emulator.sh android4docker/q-google-x86:30.0.12
 
 # https://developer.android.com/studio/run/emulator-commandline
 `-writable-system`
